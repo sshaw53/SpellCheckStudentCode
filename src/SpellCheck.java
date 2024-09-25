@@ -27,10 +27,9 @@ public class SpellCheck {
             // If we have hit a root, we need to start a new cluster
             current_idx = i;
             if (clusters[previous_idx] == 0) {
+                clusters[current_idx] = 0;
                 previous_idx = current_idx;
-                break;
             }
-
             // Traverse up the tree until you find the prefix matching the last checked word
             else {
                 while (dictionary[previous_idx] != dictionary[current_idx].substring(0, dictionary[previous_idx].length())) {

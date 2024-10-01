@@ -1,12 +1,12 @@
-public class Node {
-    private final static int radix = 27;
+public class Trie_Node {
+    private static final int radix = 256;
     private boolean isWord;
-    private Node[] next;
+    private Trie_Node[] next;
 
     // Constructor
-    public Node() {
+    public Trie_Node() {
         isWord = false;
-        next = new Node[radix];
+        next = new Trie_Node[radix];
     }
 
     // Other Functions
@@ -18,7 +18,7 @@ public class Node {
         isWord = true;
     }
 
-    public Node[] getNext() {
+    public Trie_Node[] getNext() {
         return next;
     }
 }

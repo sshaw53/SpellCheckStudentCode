@@ -29,18 +29,20 @@ public class SpellCheck {
         }
 
         // Create a Trie for the misspelled words
-        Trie misspelled = new Trie();
+        Trie misspelled_trie = new Trie();
+        ArrayList<String> misspelled = new ArrayList<String>();
 
         // for each word in text:
         for (String word: text) {
             // if not in dictionary Trie and not in misspelled Trie, add the word to misspelled Trie
-            if (!dict_trie.lookup(word) && !misspelled.lookup(word)) {
-                misspelled.insert(word);
+            if (!dict_trie.lookup(word) && !misspelled_trie.lookup(word)) {
+                misspelled_trie.insert(word);
+                misspelled.add(word);
             }
         }
         // Convert it back to an array
         // return the array
-        String[] missp = new String[FILL_W_LEN];
+        String[] missp = misspelled.toArray(new String[misspelled.size()]);
         return missp;
     }
 }

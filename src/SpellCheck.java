@@ -18,24 +18,32 @@ public class SpellCheck {
      * @param dictionary The list of all accepted words.
      * @return String[] of all misspelled words in the order they appear in text. No duplicates.
      */
+    public String[] checkWords(String[] text, String[] dictionary) {
 
-     // Create a Trie for the dictionary
+        // Create a Trie for the dictionary
+        Trie dict_trie = new Trie();
 
+        // For each word in the dictionary, insert it into the Trie
+        for (String word : dictionary) {
+            dict_trie.insert(word);
+        }
 
-     // For each word in the dictionary,
-     // insert it into the Trie
+        // Create a Trie for the misspelled words
+        Trie misspelled = new Trie();
 
-     // Create a Trie for the misspelled words
-
-     // for each word in text:
-        // if not in dictionary Trie and not in misspelled Trie
-            // add to misspelled Trie
-
-
-
-
-
-
+        // for each word in text:
+        for (String word: text) {
+            // if not in dictionary Trie and not in misspelled Trie, add the word to misspelled Trie
+            if (!dict_trie.lookup(word) && !misspelled.lookup(word)) {
+                misspelled.insert(word);
+            }
+        }
+        // Convert it back to an array
+        // return the array
+        String[] missp = new String[FILL_W_LEN];
+        return missp;
+    }
+}
 
 //    public String[] checkWords(String[] text, String[] dictionary) {
 //        // Set up the map of words
@@ -119,4 +127,4 @@ public class SpellCheck {
 //        // If there are no kids or they've all been looked at, return 0
 //        return 0;
 //    }
-}
+

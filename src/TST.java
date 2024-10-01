@@ -1,11 +1,12 @@
-public class Trie {
-    private Trie_Node root = new Trie_Node();
+public class TST {
+    private TST_Node root = new TST_Node();
 
     public void insert(String s) {
         // For each letter in string s
-        Trie_Node current = root;
+        TST_Node current = root;
         for (int i = 0; i < s.length(); i++) {
-            // The character's ASCII value is its index in the array
+            // If it's equivalent to the letter in the root, continue down
+            // If it's null, create a new branch
             int idx = s.charAt(i);
             // As long as we're not at the end of the array, insert the letter(s) to the word
             // Call the recursive algorithm for the next letter (like in the reading)
@@ -18,7 +19,7 @@ public class Trie {
         current.setWord();
     }
     public boolean lookup(String s) {
-        Trie_Node current = root;
+        TST_Node current = root;
         // For every letter in s
         for (int i = 0; i < s.length(); i++) {
             int idx = s.charAt(i);
@@ -36,4 +37,5 @@ public class Trie {
         // Otherwise, we found the word (return true)
         return true;
     }
+
 }

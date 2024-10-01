@@ -20,21 +20,21 @@ public class SpellCheck {
      */
     public String[] checkWords(String[] text, String[] dictionary) {
 
-        // Create a Trie for the dictionary
-        Trie dict_trie = new Trie();
+        // Create a TST for the dictionary
+        TST dict_trie = new TST();
 
-        // For each word in the dictionary, insert it into the Trie
+        // For each word in the dictionary, insert it into the TST
         for (String word : dictionary) {
             dict_trie.insert(word);
         }
 
-        // Create a Trie for the misspelled words
-        Trie misspelled_trie = new Trie();
+        // Create a TST for the misspelled words
+        TST misspelled_trie = new TST();
         ArrayList<String> misspelled = new ArrayList<String>();
 
         // for each word in text:
         for (String word: text) {
-            // if not in dictionary Trie and not in misspelled Trie, add the word to misspelled Trie
+            // if not in dictionary TST and not in misspelled TST, add the word to misspelled TST
             if (!dict_trie.lookup(word) && !misspelled_trie.lookup(word)) {
                 misspelled_trie.insert(word);
                 misspelled.add(word);
@@ -45,4 +45,32 @@ public class SpellCheck {
         String[] missp = misspelled.toArray(new String[misspelled.size()]);
         return missp;
     }
+
+//    public String[] checkWords(String[] text, String[] dictionary) {
+//
+//        // Create a Trie for the dictionary
+//        Trie dict_trie = new Trie();
+//
+//        // For each word in the dictionary, insert it into the Trie
+//        for (String word : dictionary) {
+//            dict_trie.insert(word);
+//        }
+//
+//        // Create a Trie for the misspelled words
+//        Trie misspelled_trie = new Trie();
+//        ArrayList<String> misspelled = new ArrayList<String>();
+//
+//        // for each word in text:
+//        for (String word: text) {
+//            // if not in dictionary Trie and not in misspelled Trie, add the word to misspelled Trie
+//            if (!dict_trie.lookup(word) && !misspelled_trie.lookup(word)) {
+//                misspelled_trie.insert(word);
+//                misspelled.add(word);
+//            }
+//        }
+//        // Convert it back to an array
+//        // return the array
+//        String[] missp = misspelled.toArray(new String[misspelled.size()]);
+//        return missp;
+//    }
 }

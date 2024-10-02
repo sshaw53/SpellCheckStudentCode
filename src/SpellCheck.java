@@ -43,6 +43,9 @@ public class SpellCheck {
         // Convert it back to an array
         // return the array
         String[] missp = misspelled.toArray(new String[misspelled.size()]);
+        for (String word: missp) {
+            System.out.println(word);
+        }
         return missp;
     }
 

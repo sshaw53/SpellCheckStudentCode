@@ -1,5 +1,5 @@
 public class TST_Node {
-    private String value;
+    private char character;
     private boolean isWord;
     private TST_Node left;
     private TST_Node right;
@@ -8,10 +8,10 @@ public class TST_Node {
     // Constructor
     public TST_Node() {
         isWord = false;
-        left = new TST_Node();
-        right = new TST_Node();
-        center = new TST_Node();
-        value = null;
+        left = null;
+        right = null;
+        center = null;
+        character = '-';
     }
 
     // Other Functions
@@ -22,8 +22,20 @@ public class TST_Node {
     public void setWord() {
         isWord = true;
     }
-    public void setValue(String val) {
-        value = val;
+    public void setCharacter(char chara) {
+        character = chara;
+    }
+
+    public void setCenter(TST_Node node) {
+        center = node;
+    }
+
+    public void setRight(TST_Node node) {
+        right = node;
+    }
+
+    public void setLeft(TST_Node node) {
+        left = node;
     }
 
     public TST_Node getRight() {
@@ -38,4 +50,7 @@ public class TST_Node {
         return center;
     }
 
+    public char getCharacter() {
+        return character;
+    }
 }

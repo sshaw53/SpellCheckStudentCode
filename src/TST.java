@@ -5,15 +5,46 @@ public class TST {
         // For each letter in string s
         TST_Node current = root;
         for (int i = 0; i < s.length(); i++) {
-            // If it's equivalent to the letter in the root, continue down
-            // If it's null, create a new branch
-            int idx = s.charAt(i);
-            // As long as we're not at the end of the array, insert the letter(s) to the word
-            // Call the recursive algorithm for the next letter (like in the reading)
-            if (current.getNext()[idx] == null) {
-                current.getNext()[idx] = new Trie_Node();
+            if (current.getCharacter() == '-') {
+                current.setCharacter(s.charAt(i));
             }
-            current = current.getNext()[idx];
+            // If it's equivalent to the letter in the root, continue down
+            // While we haven't found the letter it's equivalent to, traverse left and right based on if it's
+            // less than or more than that character
+            while (s.charAt(i) != current.getCharacter()) {
+                // If the character is smaller than the current value, go to the right
+                if (s.charAt(i) < current.getCharacter()) {
+                    // If the node to the right is null, create a node with this letter value and set current to this
+                    // node
+                    if (current.getRight() == null) {
+                        current.setRight(new TST_Node());
+                        current.getRight().setCharacter(s.charAt(i));
+                        current = current.getRight();
+                    }
+                    // Otherwise, continue to traverse down the Trie
+                    else {
+                        current = current.getRight();
+                    }
+                }
+                // Repeat for if greater than the character value
+                else {
+                    if (current.getLeft() == null) {
+                        current.setLeft(new TST_Node());
+                        current.getLeft().setCharacter(s.charAt(i));
+                        current = current.getLeft();
+                    }
+                    else {
+                        current = current.getLeft();
+                    }
+                }
+            }
+            // By now, we know that the current node is at the string's character to then go down at the center for
+            // If the next node is null, create a new node and set current to equal that node
+            if (current.getCenter() == null) {
+                current.setCenter(new TST_Node());
+            }
+
+            current = current.getCenter();
         }
         // Once we've reached the end of the word, set the last node as true for isWord
         current.setWord();

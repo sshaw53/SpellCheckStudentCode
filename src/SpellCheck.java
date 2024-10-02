@@ -18,6 +18,7 @@ public class SpellCheck {
      * @param dictionary The list of all accepted words.
      * @return String[] of all misspelled words in the order they appear in text. No duplicates.
      */
+    // TST IMPLEMENTATION
     public String[] checkWords(String[] text, String[] dictionary) {
 
         // Create a TST for the dictionary
@@ -43,12 +44,10 @@ public class SpellCheck {
         // Convert it back to an array
         // return the array
         String[] missp = misspelled.toArray(new String[misspelled.size()]);
-        for (String word: missp) {
-            System.out.println(word);
-        }
         return missp;
     }
 
+//    // TRIE IMPLEMENTATION
 //    public String[] checkWords(String[] text, String[] dictionary) {
 //
 //        // Create a Trie for the dictionary

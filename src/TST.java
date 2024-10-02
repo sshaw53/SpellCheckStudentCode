@@ -19,23 +19,17 @@ public class TST {
                     if (current.getLeft() == null) {
                         current.setLeft(new TST_Node());
                         current.getLeft().setCharacter(s.charAt(i));
-                        current = current.getLeft();
                     }
                     // Otherwise, continue to traverse down the Trie
-                    else {
-                        current = current.getLeft();
-                    }
+                    current = current.getLeft();
                 }
                 // Repeat for if greater than the character value
                 else {
                     if (current.getRight() == null) {
                         current.setRight(new TST_Node());
                         current.getRight().setCharacter(s.charAt(i));
-                        current = current.getRight();
                     }
-                    else {
-                        current = current.getRight();
-                    }
+                    current = current.getRight();
                 }
             }
             // By now, we know that the current node is at the string's character to then go down at the center for
@@ -52,27 +46,32 @@ public class TST {
         TST_Node current = root;
         // For every letter in the String s
         for (int i = 0; i < s.length(); i++) {
-            // If the branch doesn't exist (there is no Node to go to next), the word isn't in the Trie (return false)
+            // While we haven't reached the current letter, keep looking
+            while (current.getCharacter() != s.charAt(i)) {
+                // If the branch doesn't exist (there is no Node to go to next), the word isn't in the Trie (return false)
+                if (s.charAt(i) < current.getCharacter() && current.getLeft() == null) {
+                    return false;
+                }
+                if (s.charAt(i) > current.getCharacter() && current.getRight() == null) {
+                    return false;
+                }
+                // Follow to the next node in the tree based on the next letter of the word
+                if (s.charAt(i) < current.getCharacter()) {
+                    current = current.getLeft();
+                } else {
+                    current = current.getRight();
+                }
+            }
+            // Once we know the word is equal, if the next letter is null, return false. If not, go down to the center
+            // node and keep traversing through the word.
             if (current.getCharacter() == s.charAt(i) && current.getCenter() == null) {
                 return false;
             }
-            if (current.getCharacter() < s.charAt(i) && current.getLeft() == null) {
-                return false;
-            }
-            if (current.getCharacter() > s.charAt(i) && current.getRight() == null) {
-                return false;
-            }
-            // Follow to the next node in the tree based on the next letter of the word
-            if (current.getCharacter() == s.charAt(i)) {
+            else {
                 current = current.getCenter();
             }
-            else if (current.getCharacter() < s.charAt(i)) {
-                current = current.getLeft();
-            }
-            else {
-                current = current.getRight();
-            }
         }
+
         // If we reach the end of the word and isWord is false, return false
         if (!current.isWord()) {
             return false;
